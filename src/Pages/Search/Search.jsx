@@ -1,6 +1,6 @@
 import Card from "../../Components/Card/Card";
 
-function Search() {
+function Find() {
     return (
         <>
             <div className="cards">
@@ -10,4 +10,4 @@ function Search() {
     );
 }
 
-export default Search;
+export default Find;

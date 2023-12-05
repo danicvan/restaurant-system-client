@@ -1,4 +1,5 @@
 import logo from "../../assets/logo.png";
+import { Link } from "react-router-dom";
 
 function Sidebar() {
     return (
@@ -6,25 +7,33 @@ function Sidebar() {
             <div className="side">
                 <div className="side__menu">
                     <ul className="side__list">
-                        <li className="side__item">
-                            <img src={logo} alt="" />
-                            <span>Search</span>
-                        </li>
+                        <Link to="/login" className="side__link">
+                            <li className="side__item">
+                                <img src={logo} alt="" />
+                                <span>Search</span>
+                            </li>
+                        </Link>
 
-                        <li className="side__item">
-                            <img src={logo} alt="" />
-                            <span>Menu</span>
-                        </li>
+                        <Link to="/login" className="side__link">
+                            <li className="side__item">
+                                <img src={logo} alt="" />
+                                <span>Menu</span>
+                            </li>
+                        </Link>
 
-                        <li className="side__item">
-                            <img src={logo} alt="" />
-                            <span>Cart</span>
-                        </li>
+                        <Link to="/login" className="side__link">
+                            <li className="side__item">
+                                <img src={logo} alt="" />
+                                <span>Cart</span>
+                            </li>
+                        </Link>
 
-                        <li className="side__item">
-                            <img src={logo} alt="" />
-                            <span>Orders</span>
-                        </li>
+                        <Link to="/login" className="side__link">
+                            <li className="side__item">
+                                <img src={logo} alt="" />
+                                <span>Orders</span>
+                            </li>
+                        </Link>
                     </ul>
                 </div>
             </div>

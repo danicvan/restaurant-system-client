@@ -1,14 +1,18 @@
 import "./App.css";
-import Card from "./Components/Card/Card";
-import Navbar from "./Components/Navbar/Navbar";
-import Sidebar from "./Components/Sidebar/Sidebar";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "./Pages/Login/Login";
 
 function App() {
   return (
     <>
-      <Navbar />
-      <Sidebar />
-      <Card />
+      <Router>
+        <div className="login__route">
+          <Login />
+          <Routes>
+            <Route path="/login" Component={Login} />
+          </Routes>
+        </div>
+      </Router>
     </>
   );
 }
