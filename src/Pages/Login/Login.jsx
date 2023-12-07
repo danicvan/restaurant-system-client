@@ -1,23 +1,29 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState } from "react";
 import Navbar from "../../Components/Navbar/Navbar";
-import Sidebar from "../../Components/Sidebar/Sidebar";
-import Find from "../Search/Search";
+import logo from "../../assets/logo.png";
+import Main from "../Main/Main";
 
 function Login() {
+    const [showMain, setShowMain] = useState(false);
+
+    const handleLoginClick = () => {
+        setShowMain(true);
+    };
+
     return (
         <>
             <Navbar />
-            <Router>
-                <div className="side__routes">
-                    <Sidebar />
-                    <Routes>
-                        <Route path="/search" Component={Find} />
-                        <Route path="/menu" Component={Find} />
-                        <Route path="/cart" Component={Find} />
-                        <Route path="/orders" Component={Find} />
-                    </Routes>
+            <div className="main__image">
+                <img src={logo} alt="" />
+            </div>
+
+            {showMain ? (
+                <Main />
+            ) : (
+                <div className="main__login">
+                    <button onClick={handleLoginClick}>Login</button>
                 </div>
-            </Router>
+            )}
         </>
     );
 }
