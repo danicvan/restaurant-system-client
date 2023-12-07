@@ -1,16 +1,24 @@
+import { useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import Image1 from "../../assets/image-1.png";
 import Image2 from "../../assets/image-2.png";
+import Image3 from "../../assets/image-3.png";
+import Product from "../Product/Product";
 
 function Item({ visible }) {
-  
   if (!visible) return null;
+
+  const [showProduct, setShowProduct] = useState(false);
+
+  const handleProductClick = () => {
+    setShowProduct(!showProduct);
+  };
 
   return (
     <>
       <Navbar />
 
-      <div className="section">
+      <div className={`section ${showProduct? "hidden" : ""}`}>
         <div className="section__combo">
           <h3>Hot Dishes</h3>
 
@@ -22,8 +30,8 @@ function Item({ visible }) {
             <h4>[166 Kcal]</h4>
           </div>
 
-          <div className="section__image">
-            <img src={Image2} alt="" />
+          <div className="section__image" onClick={handleProductClick}>
+            <img src={Image1} alt="" />
           </div>
 
           <div className="section__description">
@@ -34,8 +42,8 @@ function Item({ visible }) {
             <h4>[166 Kcal]</h4>
           </div>
 
-          <div className="section__image">
-            <img src={Image1} alt="" />
+          <div className="section__image" onClick={handleProductClick}>
+            <img src={Image2} alt="" />
           </div>
         </div>
 
@@ -48,8 +56,8 @@ function Item({ visible }) {
             <h4>[166 Kcal]</h4>
           </div>
 
-          <div className="section__image">
-            <img src={Image1} alt="" />
+          <div className="section__image" onClick={handleProductClick}>
+            <img src={Image3} alt="" />
           </div>
 
           <div className="section__description">
@@ -60,8 +68,8 @@ function Item({ visible }) {
             <h4>[166 Kcal]</h4>
           </div>
 
-          <div className="section__image">
-            <img src={Image1} alt="" />
+          <div className="section__image" onClick={handleProductClick}>
+            <img src={Image3} alt="" />
           </div>
 
           <div className="section__description">
@@ -72,8 +80,8 @@ function Item({ visible }) {
             <h4>[166 Kcal]</h4>
           </div>
 
-          <div className="section__image">
-            <img src={Image1} alt="" />
+          <div className="section__image" onClick={handleProductClick}>
+            <img src={Image3} alt="" />
           </div>
 
           <div className="section__description">
@@ -84,8 +92,8 @@ function Item({ visible }) {
             <h4>[166 Kcal]</h4>
           </div>
 
-          <div className="section__image">
-            <img src={Image1} alt="" />
+          <div className="section__image" onClick={handleProductClick}>
+            <img src={Image3} alt="" />
           </div>
 
           <div className="section__description">
@@ -96,10 +104,14 @@ function Item({ visible }) {
             <h4>[166 Kcal]</h4>
           </div>
 
-          <div className="section__image">
-            <img src={Image1} alt="" />
+          <div className="section__image" onClick={handleProductClick}>
+            <img src={Image3} alt="" />
           </div>
         </div>
+      </div>
+
+      <div className="product">
+        <Product visible={showProduct} />
       </div>
     </>
   );

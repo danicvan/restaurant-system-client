@@ -4,6 +4,16 @@
     box-sizing: border-box;
 }
 
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.section {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
 .hidden {
     display: none;
 }

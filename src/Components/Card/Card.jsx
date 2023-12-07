@@ -4,6 +4,7 @@ import { useState } from "react";
 import Item from "../Item/Item";
 
 function Card() {
+    
     const [showItem, setShowItem] = useState(false);
 
     const handleCardClick = () => {
