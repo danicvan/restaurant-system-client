@@ -1,7 +1,9 @@
+import Item from "../../Components/Item/Item";
+
 function Menu() {
   return (
     <>
-        <h1>Menu</h1>
+        <Item visible={true}/>
     </>
   )
 }
