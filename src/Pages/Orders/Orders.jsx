@@ -1,83 +1,56 @@
-import Navbar from "../../Components/Navbar/Navbar";
+// src/App.js
+import React, { useEffect, useState } from 'react';
 
-function Orders() {
+function App() {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Fetch data from the Node.js server using async/await
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/orders');
+        const result = await response.json();
+        setData(result);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
-    <>
-      <Navbar />
-      <h2>Order</h2>
-      <p>
-        <span>Date:</span>7/12/23
-      </p>
-      <p>
-        <span>Invoice:</span>#2005
-      </p>
-
-      <table>
-        <thead>
-          <tr>
-            <th>No.</th>
-            <th>Description</th>
-            <th>Rate</th>
-            <th>Quatity</th>
-            <th>Subtotal</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1.</td>
-            <td>Shrimp Tempura</td>
-            <td>RM 23.90</td>
-            <td>2</td>
-            <td>RM 47.80</td>
-          </tr>
-          <tr>
-            <td>2.</td>
-            <td>Oyster Dynamite</td>
-            <td>RM 23.90</td>
-            <td>1</td>
-            <td>RM 23.90</td>
-          </tr>
-          <tr>
-            <td>3.</td>
-            <td>Fried Calamari Salad</td>
-            <td>RM 23.90</td>
-            <td>2</td>
-            <td>RM 47.80</td>
-          </tr>
-        </tbody>
-      </table>
-      
-      <div className="order__total">
-        <div className="order__total_title">
-          <h4>Additional Information</h4>
-          <h4>Totals</h4>
-        </div>
-
-        <div className="order__total_description">
+    <div className="App">
+      <h1>React App</h1>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        data && (
           <table>
+            <thead>
+              <tr>
+                {Object.keys(data.items[0]).map((key) => (
+                  <th key={key}>{key}</th>
+                ))}
+              </tr>
+            </thead>
             <tbody>
-              <tr>
-                <td>Subtotal:</td>
-                <td>RM 119.50</td>
-              </tr>
-              <tr>
-                <td>Tax:</td>
-                <td>5.98</td>
-              </tr>
-              <tr>
-                <td>Total</td>
-                <td>RM 125.48</td>
-              </tr>
+              {data.items.map((item, index) => (
+                <tr key={index}>
+                  {Object.values(item).map((value, index) => (
+                    <td key={index}>{value}</td>
+                  ))}
+                </tr>
+              ))}
             </tbody>
           </table>
-        </div>
-
-        <div className="order__footer">
-          <p>Thank you!  —masanaga@gmail.com</p>
-        </div>
-      </div>
-    </>
+        )
+      )}
+    </div>
   );
 }
 
-export default Orders;
+export default App;
