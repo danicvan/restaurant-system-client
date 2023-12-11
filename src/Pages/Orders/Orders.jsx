@@ -1,4 +1,3 @@
-// src/App.js
 import React, { useEffect, useState } from 'react';
 
 function App() {
@@ -11,6 +10,7 @@ function App() {
       try {
         const response = await fetch('http://localhost:3000/orders');
         const result = await response.json();
+        console.log(result);
         setData(result);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -28,17 +28,17 @@ function App() {
       {loading ? (
         <p>Loading...</p>
       ) : (
-        data && (
+        data ? (
           <table>
             <thead>
               <tr>
-                {Object.keys(data.items[0]).map((key) => (
+                {Object.keys(data[0]).map((key) => (
                   <th key={key}>{key}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
-              {data.items.map((item, index) => (
+              {data.map((item, index) => (
                 <tr key={index}>
                   {Object.values(item).map((value, index) => (
                     <td key={index}>{value}</td>
@@ -47,6 +47,8 @@ function App() {
               ))}
             </tbody>
           </table>
+        ) : (
+          <p>No data available.</p>
         )
       )}
     </div>
