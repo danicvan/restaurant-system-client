@@ -23,7 +23,7 @@ function Card() {
             </div>
 
             <div className="item">
-                <Item visible={showItem} />
+                <Item visible={true} />
             </div>
         </>
     );
