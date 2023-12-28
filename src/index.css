@@ -4,6 +4,24 @@
     box-sizing: border-box;
 }
 
+.side__routes {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.side {
+    display: flex;
+    position: fixed;
+    background: white;
+    height: 100%;
+    right: 0;
+}
+
+.side__menu {
+    display: grid;
+    gap: 100px;
+}
+
 .card-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
