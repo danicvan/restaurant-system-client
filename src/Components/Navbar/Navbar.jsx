@@ -6,7 +6,6 @@ function Navbar() {
             <div className="nav">
                 <img src={logo} alt="" />
             </div>
-            <hr />
         </>
     );
 }

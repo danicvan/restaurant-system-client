@@ -10,7 +10,6 @@ import Orders from "../Orders/Orders";
 function Main() {
     return (
         <>
-            <Navbar />
             <Router>
                 <div className="side__routes">
                     <Sidebar />

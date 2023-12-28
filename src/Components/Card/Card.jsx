@@ -13,17 +13,13 @@ function Card() {
 
     return (
         <>
-            <div className={`card-container ${showItem? "hidden" : ""}`}>
+            <div className={`cards-container ${showItem? "hidden" : ""}`}>
                 {CardData.map((item, index) => (
                     <div key={index} className="card" onClick={handleCardClick}>
                         <img src={item.image} alt={item.title} />
                         <span>{item.title}</span>
                     </div>
                 ))}
-            </div>
-
-            <div className="item">
-                <Item visible={true} />
             </div>
         </>
     );

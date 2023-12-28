@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Navbar from "../../Components/Navbar/Navbar";
-import logo from "../../assets/logo.png";
+import bigLogo from "../../assets/big-logo.svg";
 import Main from "../Main/Main";
 
 function Login() {
@@ -13,16 +13,21 @@ function Login() {
     return (
         <>
             <Navbar />
-            <div className="main__image">
-                <img src={logo} alt="" />
-            </div>
-
+            
             {showMain ? (
                 <Main />
             ) : (
-                <div className="main__login">
-                    <button onClick={handleLoginClick}>Login</button>
-                </div>
+                <>
+                    <div className="main">
+                        <div className="main__image">
+                            <img src={bigLogo} alt="" />
+                        </div>
+
+                        <div className="main__login">
+                            <button onClick={handleLoginClick}>Login</button>
+                        </div>
+                    </div>
+                </>
             )}
         </>
     );
