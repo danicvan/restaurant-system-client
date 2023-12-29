@@ -12,12 +12,12 @@ function Login() {
 
     return (
         <>
-            <Navbar />
-            
             {showMain ? (
                 <Main />
             ) : (
                 <>
+                    <Navbar />
+
                     <div className="main">
                         <div className="main__image">
                             <img src={bigLogo} alt="" />

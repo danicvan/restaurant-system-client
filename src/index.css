@@ -41,23 +41,15 @@ body {
 }
 
 .side__routes {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-}
-
-.side {
     display: flex;
-    position: fixed;
-    background: white;
-    height: 100%;
-    top: 0;
-    right: 0;
+    direction: rtl;
 }
 
 .side__menu {
     display: grid;
     gap: 100px;
     box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.1);
+    min-height: 100vh;
 }
 
 .side__list {
@@ -70,7 +62,7 @@ body {
 }
 
 .cards {
-    padding: 40px;
+    width: 100%;
 }
 
 .cards-container {
