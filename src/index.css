@@ -172,11 +172,74 @@ body {
     gap: 40px;
     width: 100%;
     height: 100vh;
-    padding: 40px;
+    padding: 20px;
+
+    border-right: 2px solid #7676764d;
+    margin: 20px;
+}
+
+.items__combo h3 {
+    font-size: 47px;
+    font-weight: 700;
+    color: #B370CD;
+    text-decoration: underline;
+    text-transform: uppercase;
+    font-family: sans-serif;
+}
+
+.items__combo-description {
+    margin-bottom: 30px;
+    border-bottom: 2px solid #7676764d;
+}
+
+.items__combo-description h2 {
+    font-size: 47px;
+    font-weight: 900;
+    color: #B370CD;
+    text-transform: uppercase;
+    font-family: sans-serif;
+    margin-bottom: 10px;
+}
+
+.items__combo-description p {
+    font-family: system-ui;
+    font-size: 23px;
+    font-weight: 400;
+
+    margin-bottom: 25px;
+    color: #767676;
+}
+
+.items__combo-description h4 {
+    font-size: 23px;
+    font-family: system-ui;
+    font-weight: 400;
+
+    margin-bottom: 25px;
+    color: #767676;
+}
+
+.items__combo-description h3 {
+    font-size: 23px;
+    font-family: system-ui;
+    font-weight: 700;
+    color: #767676;
+    text-decoration: none;
 }
 
 .items__combo-description img {
     border-radius: 50%;
+    width: 200px;
+    margin-bottom: 40px;
+}
+
+.items span {
+    position: relative;
+    margin: 5vh 0 0 0;
+    padding: 5vh 5vh 0vh 5vh;
+    box-shadow: 0px -10px 10px 1px rgba(0, 0, 0, .1);
+    border: none;
+    border-bottom: 1px solid #B5B4B4;
 }
 
 .items__single {
@@ -190,8 +253,43 @@ body {
 .items__single-description {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 }
+
+.items__single-item h2 {
+    font-size: 33px;
+    text-transform: uppercase;
+    font-weight: 900;
+    color: #B370CD;
+    font-family: sans-serif;
+    margin-bottom: 20px
+}
+
+.items__single-item p {
+    font-family: system-ui;
+    font-size: 23px;
+    font-weight: 400;
+    margin-bottom: 35px;
+    color: #767676;
+}
+
+.items__single-item h4 {
+    font-size: 23px;
+    font-family: system-ui;
+    font-weight: 400;
+
+    margin-bottom: 35px;
+    color: #767676;
+}
+
+.items__single-item h3 {
+    font-size: 23px;
+    font-family: system-ui;
+    font-weight: 700;
+    color: #767676;
+    text-decoration: none;
+}
+
 
 .items__single-description img {
     border-radius: 50%;
