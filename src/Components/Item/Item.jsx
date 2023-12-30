@@ -30,26 +30,51 @@ function Item({ visible }) {
 
   return (
     <>
-      <Navbar />
 
       <div className={`section ${selectedProduct ? "hidden" : ""}`}>
-        <div className="section__combo">
-          <h3>Hot Dishes</h3>
+        <Navbar />
+        <div className="items">
+          <div className="items__combo">
+            <h3>Hot Dishes</h3>
 
-          {products.map((product) => (
-            <div
-              key={product.code}
-              className="section__description"
-              onClick={() => handleProductClick(product)}
-            >
-              <h2>{product.name}</h2>
-              <p>{product.description}</p>
-              <h4>{`RM${product.price} + RM1.20(SST) = `}</h4>
-              <h3>{`RM${parseFloat(product.price) + 1.20}`}</h3>
-              <h4>[166 Kcal]</h4>
-              <img src={product.image} alt={product.description} />
-            </div>
-          ))}
+            {products.map((product) => (
+              <div
+                key={product.code}
+                className="items__combo-description"
+                onClick={() => handleProductClick(product)}
+              >
+                <h2>{product.name}</h2>
+                <p>{product.description}</p>
+                <h4>{`RM${product.price} + RM1.20(SST) = `}</h4>
+                <h3>{`RM${parseFloat(product.price) + 1.20}`}</h3>
+                <h4>[166 Kcal]</h4>
+                <img src={product.image} alt={product.description} />
+              </div>
+            ))}
+          </div>
+
+          <div className="items__single">
+
+            {products.map((product) => (
+              <div
+                key={product.code}
+                className="items__single-description"
+                onClick={() => handleProductClick(product)}
+              >
+                <div className="items__single-item">
+                  <h2>{product.name}</h2>
+                  <p>{product.description}</p>
+                  <h4>{`RM${product.price} + RM1.20(SST) = `}</h4>
+                  <h3>{`RM${parseFloat(product.price) + 1.20}`}</h3>
+                  <h4>[166 Kcal]</h4>
+                </div>
+                
+                <div className="items__single-img">
+                  <img src={product.image} alt={product.description} />
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
