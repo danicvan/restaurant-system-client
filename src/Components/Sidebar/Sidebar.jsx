@@ -1,4 +1,11 @@
 import logo from "../../assets/logo.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faMagnifyingGlass,
+  faList,
+  faCartShopping,
+  faWallet,
+} from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 function Sidebar() {
@@ -8,31 +15,23 @@ function Sidebar() {
                 <div className="side__menu">
                     <ul className="side__list">
                         <Link to="/search" className="side__link">
-                            <li className="side__item">
-                                <img src={logo} alt="" />
+                            <FontAwesomeIcon icon={faMagnifyingGlass} className="side__icon" />
                                 <span>Search</span>
-                            </li>
                         </Link>
 
                         <Link to="/menu" className="side__link">
-                            <li className="side__item">
-                                <img src={logo} alt="" />
+                            <FontAwesomeIcon icon={faList} className="side__icon" />
                                 <span>Menu</span>
-                            </li>
                         </Link>
 
                         <Link to="/cart" className="side__link">
-                            <li className="side__item">
-                                <img src={logo} alt="" />
+                                <FontAwesomeIcon icon={faCartShopping} className="side__icon" />
                                 <span>Cart</span>
-                            </li>
                         </Link>
 
                         <Link to="/orders" className="side__link">
-                            <li className="side__item">
-                                <img src={logo} alt="" />
+                                <FontAwesomeIcon icon={faWallet} className="side__icon" />
                                 <span>Orders</span>
-                            </li>
                         </Link>
                     </ul>
                 </div>
