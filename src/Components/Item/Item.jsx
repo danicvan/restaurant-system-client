@@ -53,6 +53,8 @@ function Item({ visible }) {
             ))}
           </div>
 
+          <div className="center-line"></div>
+
           <div className="items__single">
 
             {products.map((product) => (
