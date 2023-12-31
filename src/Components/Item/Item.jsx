@@ -78,7 +78,7 @@ function Item({ visible }) {
         </div>
       </div>
 
-      <div className="product">
+      <div className="item">
         <Product visible={selectedProduct !== null} product={selectedProduct} />
       </div>
     </>

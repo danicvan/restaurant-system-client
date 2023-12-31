@@ -231,6 +231,7 @@ body {
     border-radius: 50%;
     width: 200px;
     margin-bottom: 40px;
+    cursor: pointer;
 }
 
 .items span {
@@ -290,11 +291,128 @@ body {
     text-decoration: none;
 }
 
-
 .items__single-description img {
     border-radius: 50%;
+    cursor: pointer;
 }
 
 .hidden {
     display: none;
+}
+
+.item {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    direction: ltr;
+}
+
+.product__img {
+    border-bottom: 20px solid #B370CD;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.product__img img {
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+.product__description {
+    display: grid;
+    gap: 10px;
+    margin: 15px;
+}
+
+.product__description h2 {
+    font-size: 33px;
+    text-transform: uppercase;
+    font-weight: 900;
+    color: #B370CD;
+    font-family: sans-serif;
+    margin-bottom: 20px
+}
+
+.product__description p {
+    font-family: system-ui;
+    font-size: 23px;
+    font-weight: 400;
+    color: #767676;
+}
+
+.product__buy {
+    padding: 20px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    color: #fff;
+}
+
+.product__buy_quantity {
+    display: flex;
+}
+
+.product__buy_quantity-left {
+    font-size: 30px;
+    padding: 13px 50px;
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+    background: #B370CD;
+    border: none;
+    margin-right: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-family: sans-serif;
+    color: #fff;
+    font-weight: 900;
+}
+
+.product__buy span {
+    font-size: 30px;
+    padding: 12.5px 60px;
+    background: #B370CD;
+    border-bottom: 1px solid #B370CD;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: 900;
+}
+
+.product__buy_quantity-right {
+    font-size: 30px;
+    padding: 13px 50px;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    background: #B370CD;
+    border: none;
+    margin-left: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-family: sans-serif;
+    color: #fff;
+    font-weight: 900;
+}
+
+.product__buy_cart {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 20px;
+    color: #B370CD;
+    border: 1px solid;
+    border-radius: 30px;
+    cursor: pointer;
+    font-family: sans-serif;
 }

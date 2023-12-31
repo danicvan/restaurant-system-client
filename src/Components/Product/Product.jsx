@@ -77,15 +77,17 @@ function Product({ visible, product }) {
 
         <div className="product__buy">
           <div className="product__buy_quantity">
-            <button onClick={handleDecrement}>-</button>
+            <button className="product__buy_quantity-left" onClick={handleDecrement}>-</button>
             <span>{quantity}</span>
-            <button onClick={handleIncrement}>+</button>
+            <button className="product__buy_quantity-right" onClick={handleIncrement}>+</button>
+          </div>
+
+          <div className="product__buy_cart" onClick={handleShowToast}>
+            <FontAwesomeIcon icon={faHouse} className="nav__icon" />
+            <span>Add To Cart</span>
           </div>
         </div>
-        <div className="product__buy_cart" onClick={handleShowToast}>
-          <FontAwesomeIcon icon={faHouse} className="nav__icon" />
-          <span>Add To Cart</span>
-        </div>
+
       </div>
     </>
   );
