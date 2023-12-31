@@ -162,6 +162,10 @@ body {
     direction: ltr;
 }
 
+.section__items {
+
+}
+
 .items {
     display: flex;
     overflow: auto;
@@ -300,11 +304,11 @@ body {
     display: none;
 }
 
-.item {
+.section__item {
     display: flex;
-    width: 100%;
     justify-content: center;
     direction: ltr;
+    width: 100%;
 }
 
 .product__img {
