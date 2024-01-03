@@ -416,23 +416,7 @@ body {
     gap: 2px;
     font-size: 20px;
     color: #B370CD;
-    border: 1px solid;
-    border-radius: 30px;
-    cursor: pointer;
-    font-family: sans-serif;
-    transition: .3s;
-}
-
-.product__buy_cart:hover{
-    padding: 8px 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 2px;
-    font-size: 20px;
-    color: #fff;
-    background-color: #B370CD;
+    background-color: #fff;
     border: 1px solid;
     border-radius: 30px;
     cursor: pointer;
@@ -445,4 +429,26 @@ body {
     padding: 10px 10px;
     font-size: 15px;
     font-weight: 600;
+}
+
+.product__buy_cart:hover {
+    color: #fff;
+    background-color: #B370CD;
+    border: 1px solid;
+}
+
+.product__buy_cart:hover span {
+    background-color: #B370CD;
+    border: none;
+    padding: 10px 10px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.toast img {
+    width: 300px;
+    position: fixed;
+    top: 10px;
+    right: 165px;
+    transition: .3s;
 }

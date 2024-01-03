@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import Toast from "../Toast/Toast";
@@ -8,6 +9,7 @@ function Product({ visible, product }) {
 
   const [showToast, setShowToast] = useState(false);
   const [quantity, setQuantity] = useState(1);
+  const navigate = useNavigate();
 
   const handleShowToast = async () => {
     try {
@@ -42,7 +44,8 @@ function Product({ visible, product }) {
 
     setTimeout(() => {
       setShowToast(false);
-    }, 1000);
+      navigate("/menu");
+    }, 3000);
   };
 
   const handleIncrement = () => {
