@@ -8,11 +8,14 @@ function Card() {
     const [showItem, setShowItem] = useState(false);
 
     const handleCardClick = () => {
-        setShowItem(!showItem);
+        setShowItem(true);
     };
 
     return (
         <>
+        {showItem ? (
+            <Item visible={true} /> 
+        ) : (
             <div className={`cards-container ${showItem? "hidden" : ""}`}>
                 {CardData.map((item, index) => (
                     <div key={index} className="card" onClick={handleCardClick}>
@@ -21,6 +24,7 @@ function Card() {
                     </div>
                 ))}
             </div>
+            )}
         </>
     );
 }

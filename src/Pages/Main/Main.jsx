@@ -7,6 +7,7 @@ import Cart from "../Cart/Cart";
 import Orders from "../Orders/Orders";
 
 function Main() {
+
     return (
         <>
             <Router>
@@ -14,13 +15,15 @@ function Main() {
                     <Sidebar />
                     <Routes>
                         <Route path="/login" Component={Login} />
-                        <Route path="/search" Component={Search} />
+                        <Route path="" Component={Search}/>
                         <Route path="/menu" Component={Menu} />
                         <Route path="/cart" Component={Cart} />
                         <Route path="/orders" Component={Orders} />
                     </Routes>
                 </div>
             </Router>
+
+            <Search />
         </>
     );
 }
