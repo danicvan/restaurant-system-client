@@ -44,8 +44,9 @@ function Product({ visible, product }) {
 
     setTimeout(() => {
       setShowToast(false);
-      navigate("/menu");
-    }, 3000);
+      
+      navigate("/search");
+    }, 1000);
   };
 
   const handleIncrement = () => {

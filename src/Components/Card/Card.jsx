@@ -2,11 +2,13 @@ import { CardData } from "../CardData/CarData";
 import { useState } from "react";
 
 import Item from "../Item/Item";
+import Menu from "../../Pages/Menu/Menu";
+import { useNavigate } from "react-router-dom";
 
 function Card() {
     
     const [showItem, setShowItem] = useState(false);
-
+    const navigate = useNavigate();
     const handleCardClick = () => {
         setShowItem(true);
     };
@@ -14,7 +16,7 @@ function Card() {
     return (
         <>
         {showItem ? (
-            <Item visible={true} /> 
+            navigate('/menu')
         ) : (
             <div className={`cards-container ${showItem? "hidden" : ""}`}>
                 {CardData.map((item, index) => (

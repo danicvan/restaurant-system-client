@@ -14,7 +14,7 @@ function Sidebar() {
             <div className="side">
                 <div className="side__menu">
                     <ul className="side__list">
-                        <Link to="" className="side__link">
+                        <Link to="/search" className="side__link">
                             <FontAwesomeIcon icon={faMagnifyingGlass} className="side__icon" />
                                 <span>Search</span>
                         </Link>

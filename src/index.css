@@ -34,11 +34,12 @@ body {
 }
 
 .main {
-    height: 900px;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    width: 100%;
 }
 
 .main__login {
