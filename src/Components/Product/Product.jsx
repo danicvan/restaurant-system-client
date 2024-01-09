@@ -12,41 +12,41 @@ function Product({ visible, product }) {
   const navigate = useNavigate();
 
   const handleShowToast = async () => {
-    try {
-      const response = await fetch("http://localhost:3000/orders", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          code: product.code,
-          description: product.name,
-          amount: `RM${parseFloat(product.price).toFixed(2)}`,
-          quantity,
-          subtotal: `RM${(parseFloat(product.price) * quantity).toFixed(2)}`,
-        }),
-      });
+    // try {
+    //   const response = await fetch("http://localhost:3000/orders", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //       code: product.code,
+    //       description: product.name,
+    //       amount: `RM${parseFloat(product.price).toFixed(2)}`,
+    //       quantity,
+    //       subtotal: `RM${(parseFloat(product.price) * quantity).toFixed(2)}`,
+    //     }),
+    //   });
 
-      if (response.ok) {
-        console.log("Item added to cart successfully!");
-      } else {
-        console.error(
-          "Error adding item to cart:",
-          response.status,
-          response.statusText
-        );
-      }
-    } catch (error) {
-      console.error("Error adding item to cart:", error);
-    }
+    //   if (response.ok) {
+    //     console.log("Item added to cart successfully!");
+    //   } else {
+    //     console.error(
+    //       "Error adding item to cart:",
+    //       response.status,
+    //       response.statusText
+    //     );
+    //   }
+    // } catch (error) {
+    //   console.error("Error adding item to cart:", error);
+    // }
 
-    setShowToast(true);
+    // setShowToast(true);
 
-    setTimeout(() => {
-      setShowToast(false);
+    // setTimeout(() => {
+    //   setShowToast(false);
       
-      navigate("/search");
-    }, 1000);
+      navigate("/cart");
+    // }, 1000);
   };
 
   const handleIncrement = () => {
@@ -80,7 +80,6 @@ function Product({ visible, product }) {
         </div>
 
         <div className="product__buy">
-
           <div className="product__buy_quantity">
             <button className="product__buy_quantity-left" onClick={handleDecrement}>-</button>
             <span>{quantity}</span>
@@ -92,8 +91,6 @@ function Product({ visible, product }) {
           <span>Add To Cart</span>
         </div>
         </div>
-        
-        
       </div>
     </>
   );
