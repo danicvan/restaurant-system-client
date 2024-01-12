@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
-
-function Cart({ product }) {
+function Cart() {
 
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -18,38 +17,32 @@ function Cart({ product }) {
       } finally {
         setLoading(false);
       }
-    }
+    };
 
     fetchData();
   }, []);
 
   return (
-    <>
-      <div className="cart">
-        {loading ? (
-          <p>Loading...</p>
+    <div className="cart">
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        data ? (
+          <>
+              {data.map((item, index) => (
+                <div key={index}>
+                  {Object.values(item).map((value, index) => (
+                    <div key={index}>{value}</div>
+                  ))}
+                </div>
+              ))}
+            </>
         ) : (
-          data && data.length > 0 ? (
-            data.map((item) => {
-              <div>
-                <p>{item.code}</p>
-              </div>
-            })
-          ) : (
-            <p>No data available.</p>
-          )
-        )}
-        {/* {data.map((product) => (
-          <div
-            key={product.code}
-            className="cart__item"
-          >
-            <h2>{product.description}</h2>
-          </div>
-        ))} */}
-      </div>
-    </>
-  )
+          <p>No data available.</p>
+        )
+      )}
+    </div>
+  );
 }
 
 export default Cart;
