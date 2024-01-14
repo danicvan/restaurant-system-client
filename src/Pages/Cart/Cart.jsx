@@ -22,6 +22,22 @@ function Cart() {
     fetchData();
   }, []);
 
+  const renderCartItem = (item, index) => {
+    return (
+      <div key={index}>
+        {Object.entries(item).map(([key, value], index) => (
+          <div key={index}>
+            {/* Conditionally render elements based on the key */}
+            {key == "description" && <h2>{value}</h2>}
+            {key == "amount" && <p>Amount: {value}</p>}
+            {key == "quantity" && <p>Quantity: {value}</p>}
+            {key == "subtotal" && <p>Subtotal: {value}</p>}
+          </div>
+        ))}
+      </div>
+    );
+  };
+
   return (
     <div className="cart">
       {loading ? (
@@ -30,11 +46,7 @@ function Cart() {
         data ? (
           <>
               {data.map((item, index) => (
-                <div key={index}>
-                  {Object.values(item).map((value, index) => (
-                    <div key={index}>{value}</div>
-                  ))}
-                </div>
+                renderCartItem(item, index)
               ))}
             </>
         ) : (
