@@ -20,6 +20,7 @@ function Product({ visible, product }) {
         },
         body: JSON.stringify({
           code: product.code,
+          image: product.image,
           description: product.name,
           amount: `RM${parseFloat(product.price).toFixed(2)}`,
           quantity,
@@ -44,7 +45,7 @@ function Product({ visible, product }) {
 
     setTimeout(() => {
       setShowToast(false);
-      
+
       navigate("/cart");
     }, 1000);
   };
@@ -87,9 +88,9 @@ function Product({ visible, product }) {
           </div>
 
           <div className="product__buy_cart" onClick={handleShowToast}>
-          <FontAwesomeIcon icon={faHouse} className="nav__icon" />
-          <span>Add To Cart</span>
-        </div>
+            <FontAwesomeIcon icon={faHouse} className="nav__icon" />
+            <span>Add To Cart</span>
+          </div>
         </div>
       </div>
     </>

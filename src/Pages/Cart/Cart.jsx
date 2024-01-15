@@ -24,14 +24,28 @@ function Cart() {
 
   const renderCartItem = (item, index) => {
     return (
-      <div key={index}>
+      <div key={index} className="cart__item">
         {Object.entries(item).map(([key, value], index) => (
           <div key={index}>
             {/* Conditionally render elements based on the key */}
+            {key == "image" && <img src={value}/>}
             {key == "description" && <h2>{value}</h2>}
             {key == "amount" && <p>Amount: {value}</p>}
             {key == "quantity" && <p>Quantity: {value}</p>}
             {key == "subtotal" && <p>Subtotal: {value}</p>}
+            
+            <div className="product__buy">
+          <div className="product__buy_quantity">
+            <button className="product__buy_quantity-left">-</button>
+            {/* <span>{quantity}</span> */}
+            <button className="product__buy_quantity-right">+</button>
+          </div>
+
+          <div className="product__buy_cart">
+            {/* <FontAwesomeIcon icon={faHouse} className="nav__icon" /> */}
+            <span>Add To Cart</span>
+          </div>
+        </div>
           </div>
         ))}
       </div>
