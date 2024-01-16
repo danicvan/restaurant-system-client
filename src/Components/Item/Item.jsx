@@ -30,7 +30,6 @@ function Item({ visible }) {
 
   return (
     <>
-
       <div className={`section`}>
         <Navbar />
         <div className={`section__items ${selectedProduct ? "hidden" : ""}`}>
