@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import Toast from "../../Components/Toast/Toast";
 
 function Cart() {
@@ -9,6 +10,7 @@ function Cart() {
   const [loading, setLoading] = useState(true);
   const [showToast, setShowToast] = useState(false);
   const [quantity, setQuantity] = useState(1);
+  const [messageToast, setMessageToast] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -86,7 +88,34 @@ function Cart() {
   };
 
   const handleShowToast = async () => {
+
+    try {
+      const response = await fetch(`http://localhost:3000/cart/${itemId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        }, 
+        body: JSON.stringify({
+          code: product.code
+        }),
+      });
+
+      if (response.ok){
+        console.log("Item deleted successfully!");
+      } else {
+        console.error(
+          "Error deleting item to cart:",
+          response.status,
+          response.statusText
+        );
+      }
+    } catch (error) {
+      console.error("Error deleting item to cart:", error);
+    }
+
+    setMessageToast("Product deleted successfully");
     setShowToast(true);
+    
     setTimeout(() => {
       setShowToast(false);
     }, 1000);
@@ -97,7 +126,7 @@ function Cart() {
     <div className="cart">
 
       <div className="toast">
-        <Toast visible={showToast} />
+        <Toast visible={showToast} message={messageToast} />
       </div>
       {loading ? (
         <p>Loading...</p>
@@ -119,9 +148,8 @@ function Cart() {
                     <button className="product__buy_quantity-right" onClick={handleIncrement}>+</button>
                   </div>
 
-                  <div className="product__buy_cart" onClick={handleShowToast}>
-                    <FontAwesomeIcon icon={faHouse} className="nav__icon" />
-                    <span>Add To Cart</span>
+                  <div className="product__delete_cart" onClick={handleShowToast}>
+                    <FontAwesomeIcon icon={faTrash} className="nav__icon" />
                   </div>
                 </div>
               </div>

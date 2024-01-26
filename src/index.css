@@ -406,7 +406,7 @@ body {
     font-weight: 600;
 }
 
-.product__buy_cart {
+.product__buy_cart, .product__delete_cart {
     padding: 8px 20px;
     display: flex;
     justify-content: center;
@@ -430,7 +430,7 @@ body {
     font-weight: 600;
 }
 
-.product__buy_cart:hover {
+.product__buy_cart:hover, .product__delete_cart:hover {
     color: #fff;
     background-color: #B370CD;
     border: 1px solid;
@@ -442,6 +442,10 @@ body {
     padding: 10px 10px;
     font-size: 15px;
     font-weight: 600;
+}
+
+.product__delete_cart {
+    padding: 20px;
 }
 
 .toast img {
@@ -511,6 +515,12 @@ tr:nth-child(even) {
     width: 100%;
     grid-template-columns: repeat(4, 1fr);
     overflow: scroll;
+}
+
+.cart__item {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .cart__item img {
