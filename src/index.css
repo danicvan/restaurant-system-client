@@ -535,3 +535,13 @@ tr:nth-child(even) {
 .cart-item h2 {
     border-top: 20px solid #B370CD !important;
 }
+
+.cart__confirm {
+    display: flex;
+    justify-content: center;
+}
+
+.cart__confirm button {
+    background: #B370CD;
+    color: #ffffff;
+}
