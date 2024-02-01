@@ -81,6 +81,9 @@ function Cart() {
       // Fetch the current cart data
       const cartResponse = await fetch("http://localhost:3000/cart");
       const cartData = await cartResponse.json();
+
+      // Extract the inner array from cartData
+      const cartItems = cartData.length > 0 ? cartData[0] : [];
   
       // Save the cart data to the orders.json file
       const saveOrderResponse = await fetch("http://localhost:3000/orders", {
@@ -88,7 +91,13 @@ function Cart() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(cartData),
+        body: JSON.stringify({
+          code: cartItems.code,
+          description: cartItems.description,
+          amount: cartItems.amount,
+          quantity: cartItems.quantity,
+          subtotal: cartItems.subtotal,
+        }),
       });
   
       if (saveOrderResponse.ok) {
