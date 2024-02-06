@@ -100,15 +100,56 @@ function Cart() {
     }, 1000);
   };
 
+  async function updateCartResponse(updatedCartItems) {
+    try {
+      const updateCartResponse = await fetch("http://localhost:3000/cart", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedCartItems),
+      });
+  
+      if (updateCartResponse.ok) {
+        console.log("Cart updated successfully!");
+      } else {
+        console.error(
+          "Error updating cart:",
+          updateCartResponse.status,
+          updateCartResponse.statusText
+        );
+      }
+    } catch (error) {
+      console.error("Error updating cart:", error);
+    }
+  }
+
   const handleConfirm = async () => {
     try {
       // Fetch the current cart data
       const cartResponse = await fetch("http://localhost:3000/cart");
       const cartData = await cartResponse.json();
 
-      // Extract the inner array from cartData
       const cartItems = cartData.length > 0 ? cartData[0] : [];
 
+      // Compare the quantities in the cart data with the quantities in the state
+      const updatedCartItems = cartData.map((item) => {
+        if (quantities[item.code] !== undefined) {
+          // If quantity is different, update the quantity in the cart data
+          if (quantities[item.code] !== item.quantity) {
+            return { ...item, quantity: quantities[item.code] };
+          }
+        }
+        return item;
+      });
+
+      await updateCartResponse(updatedCartItems);
+
+    } catch (error) {
+      console.error("Error confirming purchase:", error);
+    }
+
+    try {
       // Save the cart data to the orders.json file
       const saveOrderResponse = await fetch("http://localhost:3000/orders", {
         method: "POST",
@@ -198,9 +239,8 @@ function Cart() {
             ))}
           </div>
           <div
-            className={`cart__confirm ${
-              data.length > 0 ? "show-button" : "hide-button"
-            }`}
+            className={`cart__confirm ${data.length > 0 ? "show-button" : "hide-button"
+              }`}
           >
             <Button variant="contained" onClick={() => handleConfirm()}>
               Confirm
