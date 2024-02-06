@@ -545,3 +545,11 @@ tr:nth-child(even) {
     background: #B370CD;
     color: #ffffff;
 }
+
+.show-button {
+    display: flex;
+}
+
+.hide-button {
+    display: none;
+}

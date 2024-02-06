@@ -9,17 +9,29 @@ function Cart() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showToast, setShowToast] = useState(false);
-  const [quantity, setQuantity] = useState(1);
   const [messageToast, setMessageToast] = useState(null);
   const navigate = useNavigate();
+
+  // Define a state for quantities
+  const [quantities, setQuantities] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3000/cart");
-        const result = await response.json();
-        console.log(result);
-        setData(result);
+        // Fetch the cart data
+        const cartResponse = await fetch("http://localhost:3000/cart");
+        const cartData = await cartResponse.json();
+        console.log(cartData);
+
+        // Set the cart data to the state
+        setData(cartData);
+
+        // Initialize quantities state based on fetched data
+        const initialQuantities = {};
+        cartData.forEach((product) => {
+          initialQuantities[product.code] = product.quantity;
+        });
+        setQuantities(initialQuantities);
       } catch (error) {
         console.error("Error fetching data: ", error);
       } finally {
@@ -30,13 +42,19 @@ function Cart() {
     fetchData();
   }, []);
 
-  const handleIncrement = () => {
-    setQuantity((prevQuantity) => prevQuantity + 1);
+  const handleIncrement = (code) => {
+    setQuantities((prevQuantities) => ({
+      ...prevQuantities,
+      [code]: prevQuantities[code] + 1,
+    }));
   };
 
-  const handleDecrement = () => {
-    if (quantity > 1) {
-      setQuantity((prevQuantity) => prevQuantity - 1);
+  const handleDecrement = (code) => {
+    if (quantities[code] > 1) {
+      setQuantities((prevQuantities) => ({
+        ...prevQuantities,
+        [code]: prevQuantities[code] - 1,
+      }));
     }
   };
 
@@ -56,6 +74,13 @@ function Cart() {
         const updatedResponse = await fetch("http://localhost:3000/cart");
         const updatedResult = await updatedResponse.json();
         setData(updatedResult);
+
+        // Update quantities based on the new data
+        const updatedQuantities = {};
+        updatedResult.forEach((product) => {
+          updatedQuantities[product.code] = product.quantity;
+        });
+        setQuantities(updatedQuantities);
       } else {
         console.error(
           "Error deleting item to cart:",
@@ -76,7 +101,6 @@ function Cart() {
   };
 
   const handleConfirm = async () => {
-
     try {
       // Fetch the current cart data
       const cartResponse = await fetch("http://localhost:3000/cart");
@@ -84,7 +108,7 @@ function Cart() {
 
       // Extract the inner array from cartData
       const cartItems = cartData.length > 0 ? cartData[0] : [];
-  
+
       // Save the cart data to the orders.json file
       const saveOrderResponse = await fetch("http://localhost:3000/orders", {
         method: "POST",
@@ -99,15 +123,15 @@ function Cart() {
           subtotal: cartItems.subtotal,
         }),
       });
-  
+
       if (saveOrderResponse.ok) {
         console.log("Order saved successfully!");
-  
+
         // Clear the cart by sending a DELETE request to the cart endpoint
         const clearCartResponse = await fetch("http://localhost:3000/cart", {
           method: "DELETE",
         });
-  
+
         if (clearCartResponse.ok) {
           console.log("Cart cleared successfully!");
         } else {
@@ -127,9 +151,9 @@ function Cart() {
     } catch (error) {
       console.error("Error confirming purchase:", error);
     }
-    
+
     navigate("/orders");
-  }
+  };
 
   return (
     <div className="cart">
@@ -150,14 +174,14 @@ function Cart() {
                   <div className="product__buy_quantity">
                     <button
                       className="product__buy_quantity-left"
-                      onClick={handleDecrement}
+                      onClick={() => handleDecrement(product.code)}
                     >
                       -
                     </button>
-                    <span>{quantity}</span>
+                    <span>{quantities[product.code]}</span>
                     <button
                       className="product__buy_quantity-right"
-                      onClick={handleIncrement}
+                      onClick={() => handleIncrement(product.code)}
                     >
                       +
                     </button>
@@ -173,8 +197,14 @@ function Cart() {
               </div>
             ))}
           </div>
-          <div className="cart__confirm">
-            <Button variant="contained" onClick={() => handleConfirm()}>Confirm</Button>
+          <div
+            className={`cart__confirm ${
+              data.length > 0 ? "show-button" : "hide-button"
+            }`}
+          >
+            <Button variant="contained" onClick={() => handleConfirm()}>
+              Confirm
+            </Button>
           </div>
         </div>
       ) : (
