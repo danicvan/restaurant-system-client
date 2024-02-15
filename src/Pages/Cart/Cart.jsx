@@ -102,7 +102,7 @@ function Cart() {
 
   async function updateCartResponse(updatedCartItems) {
     try {
-      const updateCartResponse = await fetch("http://localhost:3000/cart", {
+      const updateCartResponse = await fetch("http://localhost:3000/api/cart", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -125,12 +125,15 @@ function Cart() {
   }
 
   const handleConfirm = async () => {
+
+    let cartItems = []; // Define cartItems outside of the try block
+
     try {
       // Fetch the current cart data
       const cartResponse = await fetch("http://localhost:3000/cart");
       const cartData = await cartResponse.json();
 
-      const cartItems = cartData.length > 0 ? cartData[0] : [];
+      cartItems = cartData.length > 0 ? cartData[0] : [];
 
       // Compare the quantities in the cart data with the quantities in the state
       const updatedCartItems = cartData.map((item) => {
