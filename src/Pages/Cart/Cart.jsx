@@ -109,7 +109,7 @@ function Cart() {
         },
         body: JSON.stringify(updatedCartItems),
       });
-  
+
       if (updateCartResponse.ok) {
         console.log("Cart updated successfully!");
       } else {
@@ -125,15 +125,10 @@ function Cart() {
   }
 
   const handleConfirm = async () => {
-
-    let cartItems = []; // Define cartItems outside of the try block
-
     try {
       // Fetch the current cart data
       const cartResponse = await fetch("http://localhost:3000/cart");
       const cartData = await cartResponse.json();
-
-      cartItems = cartData.length > 0 ? cartData[0] : [];
 
       // Compare the quantities in the cart data with the quantities in the state
       const updatedCartItems = cartData.map((item) => {
@@ -147,53 +142,60 @@ function Cart() {
       });
 
       await updateCartResponse(updatedCartItems);
-
     } catch (error) {
       console.error("Error confirming purchase:", error);
     }
 
-    try {
-      // Save the cart data to the orders.json file
-      const saveOrderResponse = await fetch("http://localhost:3000/orders", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          code: cartItems.code,
-          description: cartItems.description,
-          amount: cartItems.amount,
-          quantity: cartItems.quantity,
-          subtotal: cartItems.subtotal,
-        }),
-      });
+    // Fetch the current cart data
+    const cartResponse = await fetch("http://localhost:3000/cart");
+    const cartData = await cartResponse.json();
 
-      if (saveOrderResponse.ok) {
-        console.log("Order saved successfully!");
-
-        // Clear the cart by sending a DELETE request to the cart endpoint
-        const clearCartResponse = await fetch("http://localhost:3000/cart", {
-          method: "DELETE",
+    // Iterate over each item in the cartData array
+    for (const cartItem of cartData) {
+      try {
+        // Save each cart item to the orders.json file
+        const saveOrderResponse = await fetch("http://localhost:3000/orders", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            code: cartItem.code,
+            description: cartItem.description,
+            amount: cartItem.amount,
+            quantity: cartItem.quantity,
+            subtotal: cartItem.subtotal,
+          }),
         });
 
-        if (clearCartResponse.ok) {
-          console.log("Cart cleared successfully!");
+        if (saveOrderResponse.ok) {
+          console.log("Order saved successfully!");
         } else {
           console.error(
-            "Error clearing cart:",
-            clearCartResponse.status,
-            clearCartResponse.statusText
+            "Error saving order:",
+            saveOrderResponse.status,
+            saveOrderResponse.statusText
           );
         }
-      } else {
-        console.error(
-          "Error saving order:",
-          saveOrderResponse.status,
-          saveOrderResponse.statusText
-        );
+      } catch (error) {
+        console.error("Error saving order:", error);
       }
-    } catch (error) {
-      console.error("Error confirming purchase:", error);
+    }
+
+    // After saving all items, clear the cart
+    // Clear the cart by sending a DELETE request to the cart endpoint
+    const clearCartResponse = await fetch("http://localhost:3000/cart", {
+      method: "DELETE",
+    });
+
+    if (clearCartResponse.ok) {
+      console.log("Cart cleared successfully!");
+    } else {
+      console.error(
+        "Error clearing cart:",
+        clearCartResponse.status,
+        clearCartResponse.statusText
+      );
     }
 
     navigate("/orders");
