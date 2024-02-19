@@ -1,26 +1,27 @@
 import { CardData } from "../CardData/CarData";
 import { useState } from "react";
 
-import Item from "../Item/Item";
-import Menu from "../../Pages/Menu/Menu";
 import { useNavigate } from "react-router-dom";
 
 function Card() {
     
     const [showItem, setShowItem] = useState(false);
     const navigate = useNavigate();
-    const handleCardClick = () => {
+    const handleCardClick = (item) => {
+        setCardDataCode(item.code);
         setShowItem(true);
     };
+    const [cardDataCode, setCardDataCode] = useState('');
+    const url = showItem ? `/menu/${cardDataCode}` : `/menu`
 
     return (
         <>
         {showItem ? (
-            navigate('/menu')
+            navigate(url)
         ) : (
             <div className={`cards-container ${showItem? "hidden" : ""}`}>
                 {CardData.map((item, index) => (
-                    <div key={index} className="card" onClick={handleCardClick}>
+                    <div key={index} className="card" onClick={handleCardClick(item)}>
                         <img src={item.image} alt={item.title} />
                         <span>{item.title}</span>
                     </div>
