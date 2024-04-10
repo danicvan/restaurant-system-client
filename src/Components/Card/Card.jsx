@@ -1,4 +1,4 @@
-import { CardData } from "../CardData/CarData";
+import { CardData } from "../CardData/CardData";
 import { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
@@ -23,7 +23,7 @@ function Card() {
         ) : (
             <div className={`cards-container ${showItem? "hidden" : ""}`}>
                 {CardData.map((item, index) => (
-                    <div key={index} className="card" onClick={handleCardClick(item)}>
+                    <div key={index} className="card" onClick={() => handleCardClick(item)}>
                         <img src={item.image} alt={item.title} />
                         <span>{item.title}</span>
                     </div>
