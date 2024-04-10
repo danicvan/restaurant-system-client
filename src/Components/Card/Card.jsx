@@ -5,13 +5,15 @@ import { useNavigate } from "react-router-dom";
 
 function Card() {
     
+    const [cardDataCode, setCardDataCode] = useState('');
+    
     const [showItem, setShowItem] = useState(false);
     const navigate = useNavigate();
     const handleCardClick = (item) => {
         setCardDataCode(item.code);
         setShowItem(true);
     };
-    const [cardDataCode, setCardDataCode] = useState('');
+    
     const url = showItem ? `/menu/${cardDataCode}` : `/menu`
 
     return (
