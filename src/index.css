@@ -40,22 +40,57 @@ body {
     justify-content: center;
     flex-direction: column;
     width: 100%;
+    background: #f0f2f5;
+    flex-direction: row;
+    gap: 200px;
+}
+
+.main__credentials {
+    background-color: #fff;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+    box-sizing: border-box;
+    padding: 20px 0 28px;
+    width: 396px;
 }
 
 .main__login {
-    margin-top: 50px;
+    display: grid;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+
+.main__login input {
+    padding: 14px 16px;
+    border: 1px solid #dddfe2;
+    border-radius: 50px;
+    font-size: 17px;
 }
 
 .main__login button {
     border: 1px;
-    padding: 15px 70px;
+    padding: 14px 16px;
     background-color: #B370CD;
     border-radius: 10px;
     color: #ffffff;
     font-size: 20px;
     cursor: pointer;
-    border-radius: 25px;
+    border-radius: 50px;
     letter-spacing: 2px;
+    transition: .3s;
+}
+
+.main__login button:hover{
+    background-color: #ab63c7;
+}
+.main__image {
+    margin: 10px;
+}
+
+.main__image img {
+    width: 250px;
 }
 
 .side__routes {
@@ -553,4 +588,12 @@ tr:nth-child(even) {
 
 .hide-button {
     display: none;
+}
+
+.error {
+    font-size: 14px;
+    font-family: sans-serif;
+    text-align: center;
+    color: #f02849;
+    font-weight: bold;
 }
